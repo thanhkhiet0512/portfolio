@@ -1,35 +1,1127 @@
 <!doctype html>
+<!--
+  Notes:
+  - Bilingual page: each piece of copy has a class="en" and a class="vi" version — edit both.
+  - Each experience / project block is self-contained: copy-paste to add more, delete to remove.
+  - Typing roles in the hero live in the ROLES object in the <script> at the bottom.
+-->
 <html lang="vi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f5f0">
-  <meta name="description" content="Portfolio developer — bản nháp đang chờ thông tin thật.">
-  <title>Your Name — Developer</title>
+  <meta name="description" content="Nguyen Thanh Khiet — backend-focused Software Engineer in Ho Chi Minh City. NestJS, PostgreSQL, Odoo ERP, Clean Architecture.">
+  <meta property="og:title" content="Nguyen Thanh Khiet — Software Engineer">
+  <meta property="og:description" content="Backend-focused software engineer building systems that stay clean as they grow.">
+  <meta property="og:image" content="photo.jpg">
+  <meta property="og:type" content="website">
+  <title>Nguyen Thanh Khiet — Software Engineer</title>
+  <script>
+    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+    (() => {
+      let l = null;
+      try { l = localStorage.getItem("lang"); } catch {}
+      document.documentElement.lang = l || (/^vi\b/i.test(navigator.language) ? "vi" : "en");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--paper:#f6f5f0;--ink:#202422;--muted:#747a74;--line:#d9dbd4;--accent:#315fbd;--soft:#e9e9e2;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{width:min(1080px,calc(100% - 48px));margin:auto}.tiny{font:11px/1.5 var(--mono);letter-spacing:.03em;color:var(--muted)}
-    header{height:68px;border-bottom:1px solid var(--line)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.wordmark{font-size:15px;font-weight:650;letter-spacing:-.04em}.wordmark span{color:var(--accent)}.nav-links{display:flex;gap:28px;align-items:center;font-size:12px;color:#5a605a}.nav-links a:hover{color:var(--accent)}.nav-links .contact-link{color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:3px}
-    .hero{display:grid;grid-template-columns:1.12fr .78fr;gap:clamp(45px,8vw,110px);align-items:center;padding:92px 0 90px;min-height:640px}.hero-copy{max-width:600px}.kicker{display:flex;gap:10px;align-items:center;color:var(--accent);font:11px var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:24px}.kicker:before{content:"";width:22px;height:1px;background:var(--accent)}h1{font-size:clamp(48px,6.3vw,78px);line-height:.99;letter-spacing:-.075em;font-weight:560;margin:0;max-width:620px}h1 span{color:var(--accent)}.intro{font-size:16px;color:#5e645e;line-height:1.8;max-width:495px;margin:25px 0 28px}.intro strong{font-weight:600;color:var(--ink)}.hero-actions{display:flex;gap:18px;align-items:center;font-size:12px;font-weight:600}.button{display:inline-flex;align-items:center;gap:13px;background:var(--ink);color:#fff;padding:11px 15px;border-radius:3px;transition:background .18s}.button:hover{background:var(--accent)}.text-link{color:#4b514b;border-bottom:1px solid #aeb2ab;padding:8px 0}.text-link:hover{color:var(--accent);border-color:var(--accent)}.draft-note{font:10px/1.6 var(--mono);color:#858a83;margin-top:25px}
-    .portrait-wrap{max-width:345px;width:100%;justify-self:end}.portrait{display:block;width:100%;aspect-ratio:3/4;overflow:hidden;background:#deddd5;border:1px solid #d5d5cc}.portrait img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center;transform:scale(2.5);transform-origin:80% 73%}.photo-caption{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:9px 0 8px;font:10px var(--mono);color:#727872}.photo-caption span:last-child{color:var(--accent)}
-    .section{padding:75px 0;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:190px 1fr;gap:35px;margin-bottom:37px}.section-label{font:11px var(--mono);color:var(--accent);padding-top:7px}.section-head h2{font-size:clamp(27px,3.8vw,39px);line-height:1.08;letter-spacing:-.055em;font-weight:560;margin:0}.section-head p{font-size:13px;line-height:1.75;color:var(--muted);max-width:550px;margin:10px 0 0}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-left:225px}.about-grid h3{font-size:14px;letter-spacing:-.02em;margin:0 0 11px;font-weight:600}.about-grid p{color:#646a64;font-size:13px;line-height:1.85;margin:0}.stack-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}.stack-list span{border:1px solid #d2d5cd;padding:5px 8px;border-radius:2px;font:10px var(--mono);color:#565e58;background:#f9f8f4}
-    .work{padding-bottom:87px}.work-list{margin-left:225px;border-top:1px solid var(--line)}.work-row{display:grid;grid-template-columns:54px 1fr 150px 20px;gap:17px;align-items:center;padding:21px 0;border-bottom:1px solid var(--line)}.work-num{font:11px var(--mono);color:var(--accent)}.work-title{font-weight:600;font-size:14px;letter-spacing:-.02em}.work-desc{font-size:12px;color:var(--muted);margin-top:3px}.work-kind{font:10px var(--mono);color:#777e76}.work-arrow{color:#7d837c;text-align:right}.work-row:hover .work-arrow{color:var(--accent);transform:translate(2px,-2px)}.work-arrow{transition:transform .15s,color .15s}.slot-note{font:10px var(--mono);color:#898e86;margin:13px 0 0}
-    .contact{background:#e9ebe5;border-top:1px solid var(--line);padding:57px 0}.contact-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}.contact h2{font-size:clamp(30px,4vw,45px);line-height:1.05;letter-spacing:-.06em;font-weight:560;margin:8px 0}.contact p{font-size:12px;color:#666d66;margin:9px 0 0}.contact .button{white-space:nowrap}.footer{padding:17px 0;color:#7c827a;font:10px var(--mono)}.footer-inner{display:flex;justify-content:space-between;gap:15px}.footer a:hover{color:var(--accent)}
-    @media(max-width:760px){.wrap{width:min(100% - 36px,560px)}header{height:60px}.nav-links{gap:16px}.nav-links a:not(.contact-link){display:none}.hero{grid-template-columns:1fr;gap:30px;padding:57px 0 55px;min-height:0}.hero-copy{order:1}.portrait-wrap{order:0;justify-self:start;width:min(72%,290px)}h1{font-size:clamp(47px,12vw,68px)}.intro{font-size:14px;margin:19px 0 23px}.section{padding:54px 0}.section-head{grid-template-columns:1fr;gap:10px;margin-bottom:25px}.section-head h2{font-size:32px}.about-grid,.work-list{margin-left:0}.about-grid{gap:25px;grid-template-columns:1fr}.work-row{grid-template-columns:35px 1fr 18px;gap:10px;padding:17px 0}.work-kind{display:none}.contact{padding:42px 0}.contact-inner{align-items:flex-start;flex-direction:column;gap:18px}.footer-inner{flex-direction:column;gap:4px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+    :root {
+      color-scheme: light;
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --muted: #f0f0f0;
+      --text: #0a0a0a;
+      --text-2: #525252;
+      --text-3: #8a8a8a;
+      --border: #e5e5e5;
+      --border-strong: #d4d4d4;
+      --accent: #0f766e;
+      --accent-soft: #e3f1ef;
+      --ok: #16a34a;
+      --dot: 10, 10, 10;
+      --glow: 15, 118, 110;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius: 12px;
+      --max: 1040px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #0a0a0a;
+        --surface: #121212;
+        --muted: #1c1c1c;
+        --text: #ededed;
+        --text-2: #a3a3a3;
+        --text-3: #6f6f6f;
+        --border: #232323;
+        --border-strong: #333333;
+        --accent: #2dd4bf;
+        --accent-soft: #0f2a27;
+        --ok: #4ade80;
+        --dot: 237, 237, 237;
+        --glow: 45, 212, 191;
+      }
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --surface: #121212;
+      --muted: #1c1c1c;
+      --text: #ededed;
+      --text-2: #a3a3a3;
+      --text-3: #6f6f6f;
+      --border: #232323;
+      --border-strong: #333333;
+      --accent: #2dd4bf;
+      --accent-soft: #0f2a27;
+      --ok: #4ade80;
+      --dot: 237, 237, 237;
+      --glow: 45, 212, 191;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      transition: background .25s, color .25s;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; color: inherit; }
+    ::selection { background: var(--accent); color: var(--bg); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Language switching */
+    html[lang="vi"] .en, html[lang="en"] .vi { display: none !important; }
+    .lang-toggle { font: 600 12px var(--mono); letter-spacing: .02em; }
+    .side-nav b { font-weight: inherit; }
+    @media (max-width: 720px) { .project.wide .cover { aspect-ratio: 16 / 9; } }
+
+    /* Header */
+    .header {
+      position: sticky; top: 0; z-index: 30;
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      backdrop-filter: saturate(160%) blur(12px);
+      -webkit-backdrop-filter: saturate(160%) blur(12px);
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+    }
+    .nav { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { font: 600 15px var(--mono); letter-spacing: -.02em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-3);
+      padding: 8px 14px; border-radius: 8px;
+      transition: color .15s, background .15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--muted); }
+    .nav-tools { display: flex; align-items: center; gap: 4px; }
+    .icon-btn {
+      width: 38px; height: 38px; display: inline-grid; place-items: center;
+      border: 0; background: transparent; border-radius: 8px; cursor: pointer; color: var(--text-2);
+      transition: background .15s, color .15s;
+    }
+    .icon-btn:hover { background: var(--muted); color: var(--text); }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .theme-toggle .moon { display: none; }
+    :root[data-theme="dark"] .theme-toggle .sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .moon { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+      :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
+    }
+    .menu-btn { display: none; }
+    .mobile-menu {
+      position: fixed; inset: 64px 0 0; z-index: 25;
+      background: var(--bg); padding: 16px;
+      transform: translateX(100%); transition: transform .3s ease;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .mobile-menu.open { transform: none; }
+    .mobile-menu a { padding: 14px 16px; border-radius: 10px; font-size: 18px; font-weight: 500; }
+    .mobile-menu a:hover { background: var(--muted); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 42px; padding: 0 18px; border-radius: 10px;
+      font: 500 14px var(--sans);
+      border: 1px solid var(--border-strong);
+      background: var(--surface); color: var(--text);
+      transition: border-color .15s, background .15s, color .15s;
+      cursor: pointer;
+    }
+    .btn:hover { border-color: var(--text-3); }
+    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn svg { width: 16px; height: 16px; flex: none; }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: calc(100svh - 64px);
+      display: grid; place-items: center;
+      padding: 64px 0 96px;
+    }
+    .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(60% 55% at 50% 45%, transparent 30%, var(--bg) 100%);
+    }
+    .hero-inner { position: relative; z-index: 1; text-align: center; max-width: 760px; padding: 0 16px; }
+    .hero-avatar {
+      width: 104px; height: 104px; margin: 0 auto 28px; border-radius: 50%; overflow: hidden;
+      background: radial-gradient(100% 80% at 50% 100%, var(--accent-soft), var(--muted));
+      border: 1px solid var(--border);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--bg) 70%, transparent);
+    }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .status {
+      display: inline-flex; align-items: center; gap: 8px;
+      font: 500 12px var(--mono); color: var(--text-2);
+      padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 85%, transparent);
+    }
+    .status i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    h1 {
+      font-size: clamp(42px, 8vw, 76px); line-height: 1.02; letter-spacing: -.045em;
+      font-weight: 800; margin: 24px 0 0;
+    }
+    .typing { font: 500 clamp(17px, 2.4vw, 22px) var(--mono); color: var(--accent); margin: 18px 0 0; min-height: 1.6em; }
+    .typing .caret { display: inline-block; width: .55em; height: 1.1em; vertical-align: -.18em; margin-left: 2px; background: currentColor; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .lede { font-size: 18px; color: var(--text-2); max-width: 580px; margin: 20px auto 0; }
+    .lede strong { color: var(--text); font-weight: 600; }
+
+    .hero-cta { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 12px; margin-top: 36px; min-height: 64px; }
+    .dock {
+      display: flex; align-items: flex-end; gap: 6px;
+      padding: 6px; border-radius: 14px;
+      background: color-mix(in srgb, var(--muted) 70%, transparent);
+      border: 1px solid var(--border);
+    }
+    .dock-item {
+      position: relative; display: grid; place-items: center;
+      width: 40px; height: 40px; border-radius: 10px; border: 0; cursor: pointer;
+      background: var(--surface); color: var(--text-2);
+      transition: width .25s cubic-bezier(.3,.7,.4,1.4), height .25s cubic-bezier(.3,.7,.4,1.4), color .15s;
+    }
+    .dock-item svg { width: 18px; height: 18px; transition: width .25s, height .25s; }
+    .dock-item:hover, .dock-item:focus-visible { width: 54px; height: 54px; color: var(--text); }
+    .dock-item:hover svg { width: 24px; height: 24px; }
+    .dock-item.near { width: 46px; height: 46px; }
+    .dock-item .tip {
+      position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translate(-50%, 4px);
+      font: 500 12px var(--sans); white-space: nowrap; color: var(--text);
+      background: var(--surface); border: 1px solid var(--border); padding: 4px 10px; border-radius: 8px;
+      opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+    }
+    .dock-item:hover .tip, .dock-item:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
+
+    .scroll-hint {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 1;
+      font: 12px var(--mono); color: var(--text-3); display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .scroll-hint i { width: 1px; height: 32px; background: linear-gradient(var(--text-3), transparent); animation: drop 1.8s ease-in-out infinite; transform-origin: top; }
+    @keyframes drop { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+    /* Section side nav */
+    .side-nav {
+      position: fixed; right: 28px; top: 50%; transform: translateY(-50%); z-index: 20;
+      display: flex; flex-direction: column; gap: 18px; padding: 4px 0;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .side-nav.visible { opacity: 1; pointer-events: auto; }
+    .side-nav::before { content: ""; position: absolute; right: 4px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+    .side-nav .progress { position: absolute; right: 4px; top: 8px; width: 1px; height: 0; background: var(--accent); transition: height .15s linear; }
+    .side-nav a { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 12px; height: 9px; }
+    .side-nav a i { width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border-strong); transition: background .2s, border-color .2s, transform .2s; }
+    .side-nav a span { font: 12px var(--mono); color: var(--text-3); opacity: 0; transform: translateX(6px); transition: opacity .2s, transform .2s; }
+    .side-nav a:hover span, .side-nav a.active span { opacity: 1; transform: none; }
+    .side-nav a.active i { background: var(--accent); border-color: var(--accent); transform: scale(1.15); }
+    .side-nav a.active span { color: var(--text); }
+
+    /* Sections */
+    .section { padding: 96px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
+    .eyebrow { font: 500 12px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .08em; }
+    .section-title { font-size: clamp(28px, 4vw, 36px); line-height: 1.15; letter-spacing: -.03em; font-weight: 700; margin: 8px 0 0; }
+    .view-all { font: 500 13px var(--mono); color: var(--text-3); display: inline-flex; gap: 6px; align-items: center; transition: color .15s; white-space: nowrap; }
+    .view-all:hover { color: var(--accent); }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+    .prose p { margin: 0 0 16px; color: var(--text-2); font-size: 17px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .facts { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+    .facts div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .facts div:last-child { border-bottom: 0; }
+    .facts dt { font-family: var(--mono); color: var(--text-3); font-size: 13px; }
+    .facts dd { margin: 0; font-weight: 500; text-align: right; }
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
+    .principle { padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+    .principle .num { font: 12px var(--mono); color: var(--accent); }
+    .principle h3 { font-size: 16px; font-weight: 600; margin: 10px 0 6px; letter-spacing: -.01em; }
+    .principle p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.55; }
+
+    /* Experience */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+    .job { position: relative; padding-bottom: 40px; }
+    .job:last-child { padding-bottom: 0; }
+    .job::before {
+      content: ""; position: absolute; left: -28px; top: 7px; width: 11px; height: 11px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--border-strong);
+    }
+    .job.current::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+    .job-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+    .job h3 { font-size: 18px; font-weight: 600; margin: 0; letter-spacing: -.015em; }
+    .job h3 .co { color: var(--accent); }
+    .job li strong { color: var(--text); font-weight: 600; }
+    .job-date { font: 13px var(--mono); color: var(--text-3); }
+    .job-sub { font-size: 14px; color: var(--text-3); margin-top: 2px; }
+    .job ul { margin: 14px 0 0; padding: 0; list-style: none; max-width: 720px; }
+    .job li { position: relative; padding-left: 18px; color: var(--text-2); font-size: 15px; margin-bottom: 8px; }
+    .job li::before { content: ""; position: absolute; left: 2px; top: .72em; width: 6px; height: 1px; background: var(--text-3); }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .tag { font: 12px var(--mono); color: var(--text-2); background: var(--muted); padding: 4px 10px; border-radius: 999px; }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .project {
+      display: flex; flex-direction: column; overflow: hidden;
+      border: 1px solid var(--border); border-radius: 16px; background: var(--surface);
+      transition: border-color .2s, transform .25s, box-shadow .25s;
+    }
+    .project:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(0,0,0,.35); }
+    .cover {
+      position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+      background:
+        radial-gradient(70% 90% at 85% 10%, hsl(var(--hue) 70% 55% / .45), transparent 60%),
+        radial-gradient(60% 80% at 10% 100%, hsl(calc(var(--hue) + 40) 70% 50% / .35), transparent 60%),
+        var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .cover::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(var(--dot), .18) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .project:hover .cover img { transform: scale(1.04); }
+    /* Illustrated covers (inline SVG, theme-aware) */
+    .cover .ill { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform .5s; }
+    .project:hover .cover .ill { transform: scale(1.03); }
+    .ill .float { filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .14)); }
+    .ill .card { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1; }
+    .ill .card.hl { stroke: var(--accent); stroke-width: 1.5; }
+    .ill .soft { fill: var(--muted); }
+    .ill .ghost { fill: var(--border-strong); }
+    .ill .acc { fill: var(--accent); }
+    .ill .t1 { fill: var(--text); font-family: var(--sans); }
+    .ill .t2 { fill: var(--text-3); font-family: var(--mono); }
+    .ill .chip { fill: color-mix(in srgb, var(--accent) 18%, transparent); }
+    .ill .chip-t { fill: var(--accent); font: 600 10px var(--mono); }
+    .ill .tick { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .ill .wire path { fill: none; stroke: var(--text-3); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: .7; }
+    .ill .wire-solid { fill: none; stroke: var(--border); stroke-width: 1; }
+    .ill .flow path { fill: none; stroke: var(--accent); stroke-width: 2; }
+    .ill .appt rect { fill: hsl(var(--h) 70% 50% / .16); stroke: hsl(var(--h) 60% 50% / .55); }
+    .ill .appt text { fill: var(--text); font: 600 11px var(--sans); }
+    .cover-label { position: absolute; left: 20px; bottom: 16px; font: 600 22px var(--mono); letter-spacing: -.03em; color: var(--text); opacity: .85; }
+    .cover-gh {
+      position: absolute; top: 12px; right: 12px; z-index: 1;
+      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px;
+      background: color-mix(in srgb, var(--surface) 85%, transparent); border: 1px solid var(--border); color: var(--text);
+      backdrop-filter: blur(6px); transition: transform .15s;
+    }
+    .cover-gh:hover { transform: scale(1.08); }
+    .cover-gh svg { width: 18px; height: 18px; }
+    .project-body { display: flex; flex-direction: column; flex: 1; padding: 20px 22px 22px; }
+    .project-date { font: 12px var(--mono); color: var(--text-3); }
+    .project h3 { font-size: 19px; font-weight: 650; letter-spacing: -.02em; margin: 6px 0 8px; }
+    .project.wide { grid-column: 1 / -1; }
+    .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 18px 0 0; padding: 16px 0 0; border-top: 1px dashed var(--border); }
+    .highlights div { font-size: 14px; color: var(--text-2); line-height: 1.5; }
+    .highlights b { display: block; font: 500 12px var(--mono); color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+    @media (max-width: 720px) { .highlights { grid-template-columns: 1fr; gap: 12px; } }
+    .cover-badge {
+      position: absolute; top: 14px; left: 16px; z-index: 1;
+      font: 500 12px var(--mono); color: var(--accent);
+      padding: 4px 10px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      background: color-mix(in srgb, var(--surface) 80%, transparent); backdrop-filter: blur(6px);
+    }
+    .project.wide .cover { aspect-ratio: 21 / 7; }
+    .project ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+    .project li { position: relative; padding-left: 16px; font-size: 14px; color: var(--text-2); }
+    .project li::before { content: ""; position: absolute; left: 0; top: .65em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .project p { font-size: 15px; color: var(--text-2); margin: 0; }
+    .project .tags { margin-top: auto; padding-top: 18px; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .skill-group { padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+    .skill-group h3 { font: 500 13px var(--mono); color: var(--text-3); margin: 0; }
+    .skill-group .tags { margin-top: 12px; }
+
+    /* Contact */
+    .contact-card {
+      position: relative; overflow: hidden; text-align: center;
+      padding: 72px 32px; border: 1px solid var(--border); border-radius: 20px;
+      background:
+        radial-gradient(60% 100% at 50% 0%, var(--accent-soft), transparent 70%),
+        var(--surface);
+    }
+    .contact-card h2 { font-size: clamp(32px, 5vw, 52px); line-height: 1.05; letter-spacing: -.04em; font-weight: 800; margin: 14px 0 0; }
+    .contact-card p { color: var(--text-2); margin: 14px auto 0; max-width: 460px; font-size: 17px; }
+    .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
+
+    /* Footer */
+    .footer { border-top: 1px solid var(--border); padding: 56px 0 32px; margin-top: 96px; }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+    .footer h4 { font: 500 12px var(--mono); color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 14px; }
+    .footer p { color: var(--text-2); font-size: 14px; margin: 10px 0 0; max-width: 300px; }
+    .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--text-2); }
+    .footer ul a:hover { color: var(--accent); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font: 12px var(--mono); color: var(--text-3); }
+    .footer-bottom a:hover { color: var(--text); }
+
+    /* Toast */
+    .toast {
+      position: fixed; left: 50%; bottom: 28px; z-index: 50;
+      transform: translate(-50%, 12px); opacity: 0; pointer-events: none;
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 10px; background: var(--text); color: var(--bg);
+      font-size: 14px; font-weight: 500; box-shadow: 0 10px 30px -10px rgba(0,0,0,.4);
+      transition: opacity .25s, transform .25s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .toast svg { width: 16px; height: 16px; }
+
+    /* Responsive */
+    @media (max-width: 1180px) { .side-nav { display: none; } }
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .principles { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > :first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 16px; }
+      .nav-links { display: none; }
+      .menu-btn { display: inline-grid; }
+      .hero { padding: 48px 0 96px; }
+      .lede { font-size: 16px; }
+      .section { padding: 72px 0; }
+      .section-head { flex-direction: column; align-items: flex-start; }
+      .projects { grid-template-columns: 1fr; }
+      .timeline { padding-left: 24px; }
+      .job::before { left: -24px; }
+      .contact-card { padding: 48px 20px; }
+      .footer { margin-top: 72px; }
+      .footer-bottom { flex-direction: column; gap: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
-  <header><nav class="nav wrap" aria-label="Điều hướng chính"><a class="wordmark" href="#top">yourname<span>.dev</span></a><div class="nav-links"><a href="#about">Giới thiệu</a><a href="#work">Dự án</a><a class="contact-link" href="#contact">Liên hệ ↗</a></div></nav></header>
+  <!-- Bilingual: every piece of copy has an .en and a .vi version; the inactive one is hidden via html[lang] -->
+  <header class="header">
+    <nav class="nav wrap" aria-label="Primary">
+      <a class="brand" href="#top">thanhkhiet<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="#about"><span class="en">About</span><span class="vi">Giới thiệu</span></a>
+        <a href="#experience"><span class="en">Experience</span><span class="vi">Kinh nghiệm</span></a>
+        <a href="#projects"><span class="en">Projects</span><span class="vi">Dự án</span></a>
+        <a href="#contact"><span class="en">Contact</span><span class="vi">Liên hệ</span></a>
+      </div>
+      <div class="nav-tools">
+        <button class="icon-btn lang-toggle" type="button" aria-label="Switch language / Đổi ngôn ngữ">
+          <span class="en">VI</span><span class="vi">EN</span>
+        </button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about"><span class="en">About</span><span class="vi">Giới thiệu</span></a>
+    <a href="#experience"><span class="en">Experience</span><span class="vi">Kinh nghiệm</span></a>
+    <a href="#projects"><span class="en">Projects</span><span class="vi">Dự án</span></a>
+    <a href="#stack"><span class="en">Stack</span><span class="vi">Công nghệ</span></a>
+    <a href="#contact"><span class="en">Contact</span><span class="vi">Liên hệ</span></a>
+  </div>
+
+  <nav class="side-nav" aria-label="Sections">
+    <div class="progress"></div>
+    <a href="#about"><span><b class="en">About</b><b class="vi">Giới thiệu</b></span><i></i></a>
+    <a href="#experience"><span><b class="en">Experience</b><b class="vi">Kinh nghiệm</b></span><i></i></a>
+    <a href="#projects"><span><b class="en">Projects</b><b class="vi">Dự án</b></span><i></i></a>
+    <a href="#stack"><span><b class="en">Stack</b><b class="vi">Công nghệ</b></span><i></i></a>
+    <a href="#contact"><span><b class="en">Contact</b><b class="vi">Liên hệ</b></span><i></i></a>
+  </nav>
+
   <main id="top">
-    <section class="hero wrap" aria-labelledby="headline">
-      <div class="hero-copy"><div class="kicker">Developer portfolio · 2026</div><h1 id="headline">Tui làm phần mềm<br><span>giải quyết việc thật.</span></h1><p class="intro">Xin chào, tui là <strong>Your Name</strong>. Đây là nơi tui giới thiệu những thứ mình đã làm, cách mình suy nghĩ và điều mình đang học.</p><div class="hero-actions"><a class="button" href="#work">Xem dự án <span aria-hidden="true">↓</span></a><a class="text-link" href="#about">Về tui một chút</a></div><div class="draft-note">BẢN DEMO · TÊN VÀ NỘI DUNG ĐANG ĐỂ MẪU</div></div>
-      <figure class="portrait-wrap"><div class="portrait"><img src="portrait-original.jpg" alt="Ảnh gốc được crop hiển thị từ bụng lên"></div><figcaption class="photo-caption"><span>ẢNH GỐC · CROP BỤNG LÊN</span><span>01 / PROFILE</span></figcaption></figure>
+    <!-- Hero -->
+    <section class="hero">
+      <canvas id="dots" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <div class="hero-avatar"><img src="photo.jpg" alt="Nguyen Thanh Khiet" width="440" height="440"></div>
+        <span class="status"><i aria-hidden="true"></i>Software Engineer @ Satori Holding</span>
+        <h1><span class="en">Hi, I'm Khiet Nguyen</span><span class="vi">Xin chào, tôi là Khiết</span></h1>
+        <p class="typing"><span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+        <p class="lede en">
+          I design <strong>backend systems that stay clean as they grow</strong> — modular NestJS services,
+          solid PostgreSQL schemas, and ERP workflows that turn real-world operations into software.
+        </p>
+        <p class="lede vi">
+          Tôi xây dựng <strong>hệ thống backend gọn gàng, dễ mở rộng</strong> — service NestJS chia module rõ ràng,
+          schema PostgreSQL chặt chẽ, và các quy trình ERP đưa vận hành thực tế lên phần mềm.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects"><span class="en">View my work</span><span class="vi">Xem dự án</span></a>
+          <div class="dock">
+            <a class="dock-item" href="https://github.com/thanhkhiet0512" target="_blank" rel="noopener" aria-label="GitHub">
+              <span class="tip">GitHub</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            </a>
+            <a class="dock-item" href="mailto:nguyenkhiet0512@gmail.com" aria-label="Email">
+              <span class="tip"><span class="en">Send email</span><span class="vi">Gửi email</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></svg>
+            </a>
+            <button class="dock-item copy-email" type="button" aria-label="Copy email">
+              <span class="tip"><span class="en">Copy email</span><span class="vi">Sao chép email</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#about"><span class="en">scroll</span><span class="vi">cuộn xuống</span><i></i></a>
     </section>
-    <section class="section" id="about"><div class="wrap"><div class="section-head"><div class="section-label">01 — GIỚI THIỆU</div><div><h2>Đang quan tâm điều gì?</h2><p>Phần này sẽ kể ngắn gọn về hướng dev, điều bro thích làm và kiểu vấn đề bro muốn giải quyết.</p></div></div><div class="about-grid"><article><h3>Về tui</h3><p>[Viết 2–3 câu về hành trình, chuyên môn và điều bro muốn theo đuổi.]</p></article><article><h3>Công nghệ hay dùng</h3><p>Đây là chỗ để stack thực tế của bro — mình sẽ bỏ những công nghệ bro không dùng.</p><div class="stack-list"><span>[Ngôn ngữ]</span><span>[Framework]</span><span>[Backend]</span><span>[Database]</span></div></article></div></div></section>
-    <section class="section work" id="work"><div class="wrap"><div class="section-head"><div class="section-label">02 — DỰ ÁN</div><div><h2>Những thứ tui đã làm</h2><p>Chưa điền project mẫu để khỏi biến kinh nghiệm của bro thành nội dung bịa. Mỗi dòng sẽ thành một dự án thật khi bro gửi thông tin.</p></div></div><div class="work-list"><a class="work-row" href="#contact"><span class="work-num">01</span><span><span class="work-title">[Tên dự án nổi bật nhất]</span><span class="work-desc">[Bài toán · phần bro làm · kết quả]</span></span><span class="work-kind">PROJECT</span><span class="work-arrow" aria-hidden="true">↗</span></a><a class="work-row" href="#contact"><span class="work-num">02</span><span><span class="work-title">[Tên dự án tiếp theo]</span><span class="work-desc">[Mô tả ngắn một câu]</span></span><span class="work-kind">PROJECT</span><span class="work-arrow" aria-hidden="true">↗</span></a><a class="work-row" href="#contact"><span class="work-num">03</span><span><span class="work-title">[Một project cá nhân hoặc open source]</span><span class="work-desc">[Link demo hoặc repository nếu có]</span></span><span class="work-kind">SIDE PROJECT</span><span class="work-arrow" aria-hidden="true">↗</span></a></div><div class="slot-note">03 SLOTS · SẼ THAY BẰNG PROJECT THẬT</div></div></section>
-    <section class="contact" id="contact"><div class="wrap contact-inner"><div><div class="section-label">03 — KẾT NỐI</div><h2>Mình nói chuyện nhé?</h2><p>Email và link mạng xã hội sẽ được thêm sau.</p></div><a class="button" href="mailto:hello@example.dev">hello@example.dev ↗</a></div></section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow"><span class="en">01 / About</span><span class="vi">01 / Giới thiệu</span></div>
+            <h2 class="section-title"><span class="en">From robots to backends</span><span class="vi">Từ robot đến backend</span></h2>
+          </div>
+        </div>
+        <div class="about-grid reveal">
+          <div class="prose en">
+            <p>
+              I started university in <strong>Automation Engineering</strong>. Joining the Robocon team at
+              HCMC University of Technology and Education put me hands-on with robots and IoT — and I found
+              the code was the part I enjoyed most. In my second year I switched to IT and never looked back.
+            </p>
+            <p>
+              Today I'm a <strong>backend-focused software engineer</strong>. At SMAC I built the backend for eSmiles,
+              an ERP for a dental clinic chain. At Satori Holding I'm building the company's Odoo ERP, and I'm
+              about to take on the backend of <strong>Nex-Q</strong>, the super app for the group's whole ecosystem.
+            </p>
+            <p>
+              What I care about most: clean code, systems that scale, and codebases that are easy to maintain long after release.
+              Off-screen, it's badminton — and only badminton.
+            </p>
+          </div>
+          <div class="prose vi">
+            <p>
+              Tôi bắt đầu đại học với ngành <strong>Tự động hóa</strong>. Tham gia đội Robocon của trường
+              Đại học Sư phạm Kỹ thuật TP.HCM, tôi được làm việc trực tiếp với robot và IoT — và nhận ra phần mình
+              thích nhất lại là viết code. Từ năm hai, tôi chuyển hẳn sang học IT.
+            </p>
+            <p>
+              Hiện tôi là <strong>software engineer thiên về backend</strong>. Ở SMAC, tôi xây dựng backend cho eSmiles —
+              hệ thống ERP cho chuỗi nha khoa. Ở Satori Holding, tôi đang xây hệ thống ERP trên Odoo và sắp đảm nhận
+              backend cho <strong>Nex-Q</strong>, super app của toàn bộ hệ sinh thái công ty.
+            </p>
+            <p>
+              Điều tôi coi trọng nhất: code sạch, hệ thống mở rộng được, và codebase dễ bảo trì lâu dài.
+              Ngoài giờ code thì là cầu lông — và chỉ cầu lông.
+            </p>
+          </div>
+          <dl class="facts">
+            <div><dt><span class="en">Location</span><span class="vi">Địa điểm</span></dt><dd><span class="en">Ho Chi Minh City</span><span class="vi">TP. Hồ Chí Minh</span></dd></div>
+            <div><dt><span class="en">Currently</span><span class="vi">Hiện tại</span></dt><dd>Software Engineer @ Satori</dd></div>
+            <div><dt><span class="en">Experience</span><span class="vi">Kinh nghiệm</span></dt><dd><span class="en">Since Oct 2025</span><span class="vi">Từ 10/2025</span></dd></div>
+            <div><dt><span class="en">Studying</span><span class="vi">Đang học</span></dt><dd><span class="en">Bachelor's (bridging) · UIT</span><span class="vi">Liên thông đại học · UIT</span></dd></div>
+            <div><dt><span class="en">Diploma</span><span class="vi">Tốt nghiệp</span></dt><dd>FPT Polytechnic</dd></div>
+            <div><dt><span class="en">Off-screen</span><span class="vi">Ngoài giờ</span></dt><dd><span class="en">Badminton</span><span class="vi">Cầu lông</span></dd></div>
+          </dl>
+        </div>
+        <div class="principles reveal">
+          <div class="principle">
+            <span class="num">01</span>
+            <h3><span class="en">Clean code</span><span class="vi">Code sạch</span></h3>
+            <p class="en">Clear names, small modules and Clean Architecture boundaries — code that reads like the business it models.</p>
+            <p class="vi">Đặt tên rõ ràng, module nhỏ, ranh giới Clean Architecture — code đọc lên là hiểu nghiệp vụ.</p>
+          </div>
+          <div class="principle">
+            <span class="num">02</span>
+            <h3><span class="en">Built to scale</span><span class="vi">Sẵn sàng mở rộng</span></h3>
+            <p class="en">Modular design and measured performance — k6 load tests instead of guesswork.</p>
+            <p class="vi">Thiết kế theo module, đo hiệu năng thật bằng k6 thay vì đoán mò.</p>
+          </div>
+          <div class="principle">
+            <span class="num">03</span>
+            <h3><span class="en">Easy to maintain</span><span class="vi">Dễ bảo trì</span></h3>
+            <p class="en">Structure the next developer — or an intern I'm mentoring — can pick up without a walkthrough.</p>
+            <p class="vi">Cấu trúc mà người sau — kể cả bạn intern tôi đang hướng dẫn — đọc là nắm được.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow"><span class="en">02 / Experience</span><span class="vi">02 / Kinh nghiệm</span></div>
+            <h2 class="section-title"><span class="en">Where I've worked</span><span class="vi">Nơi tôi đã làm việc</span></h2>
+          </div>
+        </div>
+        <div class="timeline">
+          <article class="job current reveal">
+            <div class="job-top">
+              <h3>Software Engineer · <span class="co">Satori Holding</span></h3>
+              <span class="job-date"><span class="en">Apr 2026 — Present</span><span class="vi">04/2026 — Hiện tại</span></span>
+            </div>
+            <div class="job-sub"><span class="en">Company ERP on Odoo · Team of 11</span><span class="vi">Hệ thống ERP trên Odoo · Team 11 người</span></div>
+            <ul class="en">
+              <li>Building and customising the full order-to-delivery flow in Odoo — from sales orders through warehouse processing and outbound to shipping.</li>
+              <li>Brought the central warehouse, branch warehouses and delivery-partner warehouses onto <strong>one standardised, digitised process</strong>.</li>
+              <li>Mentoring an intern on code structure and Odoo development.</li>
+              <li>Next up: backend developer for Nex-Q, the group's ecosystem super app.</li>
+            </ul>
+            <ul class="vi">
+              <li>Xây dựng và tùy biến toàn bộ luồng trên Odoo — từ đơn hàng, xử lý kho, xuất kho đến giao vận.</li>
+              <li>Đưa kho tổng, các kho con và kho giao hộ về <strong>một quy trình chuẩn, chuyển đổi số hoàn toàn</strong>.</li>
+              <li>Mentor một bạn intern về cấu trúc code và phát triển trên Odoo.</li>
+              <li>Sắp tới: phụ trách backend cho Nex-Q — super app của toàn hệ sinh thái công ty.</li>
+            </ul>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Odoo</span><span class="tag">PostgreSQL</span><span class="tag">XML</span></div>
+          </article>
+          <article class="job reveal">
+            <div class="job-top">
+              <h3>Backend Developer · <span class="co">SMAC Technology</span></h3>
+              <span class="job-date"><span class="en">Oct 2025 — Mar 2026</span><span class="vi">10/2025 — 03/2026</span></span>
+            </div>
+            <div class="job-sub"><span class="en">eSmiles · ERP for a dental clinic chain</span><span class="vi">eSmiles · ERP cho chuỗi nha khoa</span></div>
+            <ul class="en">
+              <li>Built backend modules for an HIS-style platform covering appointment booking, examinations, dental lab workflows that support doctors, and patient records.</li>
+              <li>Set up the backend codebase on <strong>Clean Architecture</strong>, keeping domain logic separate from frameworks so new modules slot in without rewrites.</li>
+              <li>Integrated <strong>k6</strong> to load-test and benchmark APIs before release.</li>
+            </ul>
+            <ul class="vi">
+              <li>Xây dựng các module backend cho nền tảng kiểu HIS: đặt lịch, thăm khám, quy trình labo hỗ trợ bác sĩ và lưu trữ hồ sơ bệnh nhân.</li>
+              <li>Dựng source backend theo <strong>Clean Architecture</strong>, tách logic nghiệp vụ khỏi framework để thêm module mới không phải viết lại.</li>
+              <li>Tích hợp <strong>k6</strong> để load test và đo hiệu năng API trước khi release.</li>
+            </ul>
+            <div class="tags"><span class="tag">NestJS</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">k6</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects: put a screenshot in .cover as <img src="..."> to replace the generated cover -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow"><span class="en">03 / Projects</span><span class="vi">03 / Dự án</span></div>
+            <h2 class="section-title"><span class="en">Featured work</span><span class="vi">Dự án tiêu biểu</span></h2>
+          </div>
+          <a class="view-all" href="https://github.com/thanhkhiet0512" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <div class="projects">
+          <article class="project wide reveal">
+            <div class="cover" style="--hue: 170">
+              <span class="cover-badge"><span class="en">Starting soon</span><span class="vi">Sắp triển khai</span></span>
+              <svg class="ill" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="nexq-card" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="hsl(170 70% 38%)"/><stop offset="1" stop-color="hsl(200 70% 32%)"/>
+                  </linearGradient>
+                </defs>
+                <g class="wire">
+                  <path d="M470 147 C490 147 490 150 505 150"/><path d="M480 250 C495 250 495 245 505 245"/>
+                  <path d="M695 127 C712 127 712 127 730 127"/><path d="M695 247 C720 247 720 247 745 247"/>
+                </g>
+                <g class="float">
+                  <rect class="card" x="290" y="110" width="180" height="74" rx="14"/>
+                  <circle class="acc" cx="318" cy="147" r="12" opacity=".9"/>
+                  <path d="M312 147l4 4 8-8" class="tick"/>
+                  <text class="t2" x="340" y="138" font-size="11">Points earned</text>
+                  <text class="t1" x="340" y="161" font-size="18" font-weight="700">+250 pts</text>
+
+                  <rect class="card" x="330" y="218" width="150" height="64" rx="14"/>
+                  <text class="t2" x="346" y="242" font-size="11">Tier progress</text>
+                  <rect class="soft" x="346" y="256" width="118" height="8" rx="4"/>
+                  <rect class="acc" x="346" y="256" width="82" height="8" rx="4"/>
+
+                  <rect class="card" x="730" y="90" width="190" height="74" rx="14"/>
+                  <text class="t2" x="748" y="118" font-size="11">Commission</text>
+                  <text class="t1" x="748" y="142" font-size="18" font-weight="700">Payout ready</text>
+                  <rect class="chip" x="866" y="104" width="40" height="18" rx="9"/>
+                  <text class="chip-t" x="886" y="117" font-size="10" text-anchor="middle">OK</text>
+
+                  <rect class="card" x="745" y="212" width="170" height="70" rx="14"/>
+                  <text class="t2" x="763" y="238" font-size="11">Policy v12 · checker</text>
+                  <circle class="acc" cx="773" cy="261" r="8"/>
+                  <path d="M769 261l3 3 5-5" class="tick"/>
+                  <text class="t1" x="788" y="266" font-size="15" font-weight="600">Approved</text>
+                </g>
+                <g class="float">
+                  <rect class="card" x="505" y="36" width="190" height="400" rx="30"/>
+                  <rect class="soft" x="575" y="48" width="50" height="8" rx="4"/>
+                  <rect fill="url(#nexq-card)" x="520" y="72" width="160" height="96" rx="14"/>
+                  <text x="534" y="95" font-size="11" font-weight="700" fill="#fff" font-family="var(--mono)">NEX-Q</text>
+                  <text x="666" y="95" font-size="9" fill="#fff" opacity=".8" text-anchor="end" font-family="var(--mono)">GOLD</text>
+                  <text x="534" y="140" font-size="24" font-weight="700" fill="#fff" font-family="var(--sans)">12,450</text>
+                  <text x="534" y="156" font-size="9" fill="#fff" opacity=".8" font-family="var(--mono)">points available</text>
+                  <text class="t2" x="520" y="194" font-size="10">Recent activity</text>
+                  <g>
+                    <rect class="soft" x="520" y="204" width="160" height="34" rx="9"/>
+                    <circle class="acc" cx="537" cy="221" r="8" opacity=".35"/>
+                    <rect class="ghost" x="552" y="213" width="64" height="6" rx="3"/><rect class="ghost" x="552" y="224" width="40" height="5" rx="2.5" opacity=".6"/>
+                    <text class="acc" x="670" y="225" font-size="11" font-weight="600" text-anchor="end" font-family="var(--mono)">+250</text>
+                    <rect class="soft" x="520" y="244" width="160" height="34" rx="9"/>
+                    <circle class="acc" cx="537" cy="261" r="8" opacity=".35"/>
+                    <rect class="ghost" x="552" y="253" width="72" height="6" rx="3"/><rect class="ghost" x="552" y="264" width="36" height="5" rx="2.5" opacity=".6"/>
+                    <text class="t2" x="670" y="265" font-size="11" text-anchor="end">−1,000</text>
+                    <rect class="soft" x="520" y="284" width="160" height="34" rx="9"/>
+                    <circle class="acc" cx="537" cy="301" r="8" opacity=".35"/>
+                    <rect class="ghost" x="552" y="293" width="58" height="6" rx="3"/><rect class="ghost" x="552" y="304" width="44" height="5" rx="2.5" opacity=".6"/>
+                    <text class="acc" x="670" y="305" font-size="11" font-weight="600" text-anchor="end" font-family="var(--mono)">+80</text>
+                    <rect class="soft" x="520" y="324" width="160" height="34" rx="9"/>
+                    <circle class="acc" cx="537" cy="341" r="8" opacity=".35"/>
+                    <rect class="ghost" x="552" y="333" width="66" height="6" rx="3"/><rect class="ghost" x="552" y="344" width="30" height="5" rx="2.5" opacity=".6"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-date"><span class="en">Satori Holding · Backend developer</span><span class="vi">Satori Holding · Backend developer</span></span>
+              <h3>Nex-Q Super App</h3>
+              <p class="en">
+                A membership and commerce super app for the company's whole ecosystem — mobile app, admin web and merchant portal.
+                The first release covers multi-role accounts, orders and payments, prepaid packages, loyalty points and tiers,
+                affiliate commissions, and a configurable policy engine for campaigns.
+              </p>
+              <p class="vi">
+                Super app thành viên và mua sắm cho toàn bộ hệ sinh thái công ty — gồm app di động, web quản trị và cổng merchant.
+                Giai đoạn đầu gồm tài khoản đa vai trò, đơn hàng và thanh toán, gói mua trước, tích điểm và hạng thành viên,
+                hoa hồng cộng tác viên, và policy engine cấu hình được cho các chiến dịch.
+              </p>
+              <div class="highlights">
+                <div><b><span class="en">Architecture</span><span class="vi">Kiến trúc</span></b><span class="en">NestJS modular monolith with strict module boundaries</span><span class="vi">NestJS modular monolith, ranh giới module chặt chẽ</span></div>
+                <div><b><span class="en">Correctness</span><span class="vi">Tính đúng</span></b><span class="en">Double-entry ledger, idempotency keys and a transactional outbox</span><span class="vi">Sổ cái ghi sổ kép, idempotency key và transactional outbox</span></div>
+                <div><b><span class="en">Scale</span><span class="vi">Quy mô</span></b><span class="en">Migrating existing customers; designed to grow without re-architecting</span><span class="vi">Chuyển đổi khách hàng cũ; thiết kế để tăng tải không phải đổi kiến trúc</span></div>
+              </div>
+              <div class="tags"><span class="tag">NestJS</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Drizzle</span><span class="tag">pg-boss</span><span class="tag">Testcontainers</span><span class="tag">Docker</span></div>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="cover" style="--hue: 25">
+              <svg class="ill" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <marker id="satori-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0 0L10 5L0 10z" class="acc"/>
+                  </marker>
+                </defs>
+                <g class="flow">
+                  <path d="M188 112H226" marker-end="url(#satori-arrow)"/>
+                  <path d="M378 112H416" marker-end="url(#satori-arrow)"/>
+                  <path d="M568 112H606" marker-end="url(#satori-arrow)"/>
+                </g>
+                <g class="wire">
+                  <path d="M303 146V200"/>
+                  <path d="M303 252V290M303 290H148V318M303 290V318M303 290H458V318"/>
+                </g>
+                <g class="float">
+                  <rect class="card" x="38" y="80" width="150" height="64" rx="12"/>
+                  <text class="t1" x="56" y="108" font-size="16" font-weight="600">Sales order</text>
+                  <text class="t2" x="56" y="129" font-size="12">SO/0142</text>
+                  <rect class="card" x="228" y="80" width="150" height="64" rx="12"/>
+                  <text class="t1" x="246" y="108" font-size="16" font-weight="600">Warehouse</text>
+                  <text class="t2" x="246" y="129" font-size="12">pick · pack</text>
+                  <rect class="card" x="418" y="80" width="150" height="64" rx="12"/>
+                  <text class="t1" x="436" y="108" font-size="16" font-weight="600">Outbound</text>
+                  <text class="t2" x="436" y="129" font-size="12">stock out</text>
+                  <rect class="card hl" x="608" y="80" width="150" height="64" rx="12"/>
+                  <text class="t1" x="626" y="108" font-size="16" font-weight="600">Delivery</text>
+                  <text class="t2" x="626" y="129" font-size="12">in transit</text>
+                  <rect class="chip" x="700" y="92" width="44" height="20" rx="10"/>
+                  <text class="chip-t" x="722" y="106" font-size="11" text-anchor="middle">live</text>
+
+                  <rect class="card hl" x="223" y="200" width="160" height="52" rx="12"/>
+                  <circle class="acc" cx="245" cy="226" r="6"/>
+                  <text class="t1" x="259" y="231" font-size="15" font-weight="600">Central WH</text>
+
+                  <rect class="card" x="78" y="318" width="140" height="48" rx="12"/>
+                  <text class="t1" x="96" y="347" font-size="14" font-weight="500">Branch WH A</text>
+                  <rect class="card" x="233" y="318" width="140" height="48" rx="12"/>
+                  <text class="t1" x="251" y="347" font-size="14" font-weight="500">Branch WH B</text>
+                  <rect class="card" x="388" y="318" width="140" height="48" rx="12"/>
+                  <text class="t1" x="406" y="347" font-size="14" font-weight="500">Partner WH</text>
+
+                  <rect class="card" x="568" y="200" width="190" height="166" rx="12"/>
+                  <text class="t2" x="586" y="226" font-size="12">Stock moves today</text>
+                  <rect class="soft" x="586" y="300" width="18" height="46" rx="3"/>
+                  <rect class="soft" x="614" y="280" width="18" height="66" rx="3"/>
+                  <rect class="soft" x="642" y="292" width="18" height="54" rx="3"/>
+                  <rect class="acc" x="670" y="258" width="18" height="88" rx="3" opacity=".85"/>
+                  <rect class="soft" x="698" y="272" width="18" height="74" rx="3"/>
+                  <rect class="soft" x="726" y="288" width="18" height="58" rx="3"/>
+                  <text class="t1" x="586" y="256" font-size="20" font-weight="700">248</text>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-date"><span class="en">Apr 2026 — Present · Satori Holding</span><span class="vi">04/2026 — Hiện tại · Satori Holding</span></span>
+              <h3><span class="en">Satori ERP on Odoo</span><span class="vi">ERP Satori trên Odoo</span></h3>
+              <p class="en">End-to-end operations in Odoo — orders, warehousing, outbound and delivery — across the central warehouse, branch warehouses and delivery-partner warehouses.</p>
+              <p class="vi">Toàn bộ quy trình vận hành trên Odoo — đơn hàng, kho, xuất kho, giao vận — cho kho tổng, các kho con và kho giao hộ.</p>
+              <ul class="en">
+                <li>Custom modules covering the full order-to-delivery flow</li>
+                <li>One standard process replacing manual, per-warehouse steps</li>
+              </ul>
+              <ul class="vi">
+                <li>Module tùy biến cho toàn bộ luồng từ đơn hàng đến giao vận</li>
+                <li>Một quy trình chuẩn thay cho thao tác thủ công ở từng kho</li>
+              </ul>
+              <div class="tags"><span class="tag">Python</span><span class="tag">Odoo</span><span class="tag">PostgreSQL</span></div>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="cover" style="--hue: 200">
+              <svg class="ill" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g class="float">
+                  <rect class="card" x="60" y="44" width="680" height="440" rx="16"/>
+                  <circle class="soft" cx="84" cy="66" r="5"/><circle class="soft" cx="100" cy="66" r="5"/><circle class="soft" cx="116" cy="66" r="5"/>
+                  <path class="wire-solid" d="M60 86H740M196 86V484"/>
+                  <rect class="acc" x="74" y="104" width="108" height="30" rx="8" opacity=".16"/>
+                  <rect class="acc" x="86" y="116" width="10" height="6" rx="3"/>
+                  <rect class="ghost" x="104" y="116" width="58" height="6" rx="3"/>
+                  <rect class="ghost" x="86" y="156" width="70" height="6" rx="3"/>
+                  <rect class="ghost" x="86" y="186" width="54" height="6" rx="3"/>
+                  <rect class="ghost" x="86" y="216" width="64" height="6" rx="3"/>
+                  <rect class="ghost" x="86" y="246" width="48" height="6" rx="3"/>
+
+                  <text class="t1" x="218" y="122" font-size="18" font-weight="700">Appointments</text>
+                  <text class="t2" x="218" y="142" font-size="11">Clinic · District 1</text>
+                  <rect class="chip" x="640" y="106" width="80" height="24" rx="12"/>
+                  <text class="chip-t" x="680" y="122" font-size="11" text-anchor="middle">+ Booking</text>
+
+                  <g class="t2" font-size="11">
+                    <text x="230" y="174">Mon</text><text x="334" y="174">Tue</text><text x="438" y="174">Wed</text><text x="542" y="174">Thu</text><text x="646" y="174">Fri</text>
+                  </g>
+                  <path class="wire-solid" d="M218 184H726M218 236H726M218 288H726M218 340H726M218 392H726"/>
+
+                  <g class="appt">
+                    <rect x="222" y="190" width="96" height="42" rx="7" style="--h:170"/>
+                    <text x="232" y="207" font-size="11">Check-up</text>
+                    <rect x="326" y="242" width="96" height="94" rx="7" style="--h:270"/>
+                    <text x="336" y="259" font-size="11">Lab · Crown</text>
+                    <rect x="430" y="190" width="96" height="42" rx="7" style="--h:200"/>
+                    <text x="440" y="207" font-size="11">Cleaning</text>
+                    <rect x="534" y="294" width="96" height="42" rx="7" style="--h:30"/>
+                    <text x="544" y="311" font-size="11">Consult</text>
+                    <rect x="638" y="242" width="96" height="42" rx="7" style="--h:170"/>
+                    <text x="648" y="259" font-size="11">X-ray</text>
+                    <rect x="222" y="346" width="96" height="42" rx="7" style="--h:200"/>
+                    <text x="232" y="363" font-size="11">Follow-up</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-date"><span class="en">Oct 2025 — Mar 2026 · SMAC Technology</span><span class="vi">10/2025 — 03/2026 · SMAC Technology</span></span>
+              <h3>eSmiles Dental ERP</h3>
+              <p class="en">An HIS-style ERP for a dental clinic chain — booking, examinations, dental lab workflows and patient records in one system.</p>
+              <p class="vi">Hệ thống ERP kiểu HIS cho chuỗi nha khoa — đặt lịch, thăm khám, quy trình labo và lưu trữ hồ sơ trong một hệ thống.</p>
+              <ul class="en">
+                <li>Backend codebase built on Clean Architecture</li>
+                <li>API performance benchmarked with k6</li>
+              </ul>
+              <ul class="vi">
+                <li>Source backend theo Clean Architecture</li>
+                <li>Đo hiệu năng API bằng k6</li>
+              </ul>
+              <div class="tags"><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Docker</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="section" id="stack">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow"><span class="en">04 / Stack</span><span class="vi">04 / Công nghệ</span></div>
+            <h2 class="section-title"><span class="en">Tools I use daily</span><span class="vi">Công cụ tôi dùng hằng ngày</span></h2>
+          </div>
+        </div>
+        <div class="skills reveal">
+          <div class="skill-group"><h3><span class="en">Languages</span><span class="vi">Ngôn ngữ</span></h3><div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">SQL</span></div></div>
+          <div class="skill-group"><h3>Backend &amp; API</h3><div class="tags"><span class="tag">NestJS</span><span class="tag">ExpressJS</span><span class="tag">Odoo</span><span class="tag">REST</span><span class="tag">WebSocket</span><span class="tag">Prisma</span></div></div>
+          <div class="skill-group"><h3><span class="en">Architecture</span><span class="vi">Kiến trúc</span></h3><div class="tags"><span class="tag">Clean Architecture</span><span class="tag">DDD</span><span class="tag">Dependency Injection</span><span class="tag">Modular monolith</span></div></div>
+          <div class="skill-group"><h3><span class="en">Databases</span><span class="vi">Cơ sở dữ liệu</span></h3><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span></div></div>
+          <div class="skill-group"><h3>DevOps</h3><div class="tags"><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">GitHub Actions</span><span class="tag">Coolify</span><span class="tag">VPS</span></div></div>
+          <div class="skill-group"><h3><span class="en">Quality &amp; security</span><span class="vi">Kiểm thử &amp; bảo mật</span></h3><div class="tags"><span class="tag">Unit / E2E tests</span><span class="tag">k6</span><span class="tag">Autocannon</span><span class="tag">CASL</span><span class="tag">OWASP</span></div></div>
+          <div class="skill-group"><h3>Frontend</h3><div class="tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind CSS</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <div class="eyebrow"><span class="en">05 / Contact</span><span class="vi">05 / Liên hệ</span></div>
+          <h2><span class="en">Let's talk.</span><span class="vi">Kết nối nhé.</span></h2>
+          <p class="en">Backend architecture, ERP, or a game of badminton — my inbox is open.</p>
+          <p class="vi">Kiến trúc backend, ERP hay một trận cầu lông — cứ nhắn cho tôi.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:nguyenkhiet0512@gmail.com">nguyenkhiet0512@gmail.com</a>
+            <button class="btn copy-email" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+              <span class="en">Copy email</span><span class="vi">Sao chép email</span>
+            </button>
+            <a class="btn" href="https://github.com/thanhkhiet0512" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 YOUR NAME</span><span>MADE BY HAND · <a href="#top">LÊN ĐẦU TRANG ↑</a></span></div></footer>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top">thanhkhiet<span>.dev</span></a>
+          <p class="en">Backend-focused software engineer building systems that stay clean as they grow.</p>
+          <p class="vi">Software engineer thiên về backend, xây hệ thống gọn gàng và dễ mở rộng.</p>
+        </div>
+        <div>
+          <h4><span class="en">Explore</span><span class="vi">Khám phá</span></h4>
+          <ul>
+            <li><a href="#about"><span class="en">About</span><span class="vi">Giới thiệu</span></a></li>
+            <li><a href="#experience"><span class="en">Experience</span><span class="vi">Kinh nghiệm</span></a></li>
+            <li><a href="#projects"><span class="en">Projects</span><span class="vi">Dự án</span></a></li>
+            <li><a href="#stack"><span class="en">Stack</span><span class="vi">Công nghệ</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h4><span class="en">Connect</span><span class="vi">Kết nối</span></h4>
+          <ul>
+            <li><a href="mailto:nguyenkhiet0512@gmail.com">Email</a></li>
+            <li><a href="https://github.com/thanhkhiet0512" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Nguyen Thanh Khiet</span>
+        <a href="#top"><span class="en">Back to top ↑</span><span class="vi">Lên đầu trang ↑</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    <span>Email copied</span>
+  </div>
+
+  <script>
+    const EMAIL = "nguyenkhiet0512@gmail.com";
+    const ROLES = {
+      en: ["Software Engineer", "Backend · NestJS · PostgreSQL", "Clean Architecture & DDD", "Odoo ERP · Python"],
+      vi: ["Software Engineer", "Backend · NestJS · PostgreSQL", "Clean Architecture & DDD", "Odoo ERP · Python"],
+    };
+    const COPIED = { en: "Email copied", vi: "Đã sao chép email" };
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const lang = () => document.documentElement.lang === "vi" ? "vi" : "en";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Language toggle
+    document.querySelector(".lang-toggle").addEventListener("click", () => {
+      document.documentElement.lang = lang() === "vi" ? "en" : "vi";
+      try { localStorage.setItem("lang", lang()); } catch {}
+      restartTyping();
+    });
+
+    // Theme toggle
+    const root = document.documentElement;
+    const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    document.querySelector(".theme-toggle").addEventListener("click", () => {
+      root.dataset.theme = isDark() ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch {}
+    });
+
+    // Mobile menu
+    const menu = document.getElementById("mobile-menu");
+    const menuBtn = document.querySelector(".menu-btn");
+    const setMenu = open => { menu.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", open); };
+    menuBtn.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+    addEventListener("keydown", e => e.key === "Escape" && setMenu(false));
+
+    // Copy email + toast
+    const toast = document.querySelector(".toast");
+    let toastTimer;
+    document.querySelectorAll(".copy-email").forEach(btn => btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(EMAIL);
+        toast.querySelector("span").textContent = COPIED[lang()];
+      } catch {
+        toast.querySelector("span").textContent = EMAIL;
+      }
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }));
+
+    // Typing effect
+    const typed = document.getElementById("typed");
+    let typingTimer;
+    function restartTyping() {
+      clearTimeout(typingTimer);
+      const roles = ROLES[lang()];
+      if (reduceMotion) { typed.textContent = roles[0]; return; }
+      let role = 0, chars = 0, deleting = false;
+      const tick = () => {
+        const word = roles[role];
+        chars += deleting ? -1 : 1;
+        typed.textContent = word.slice(0, chars);
+        let delay = deleting ? 35 : 70;
+        if (!deleting && chars === word.length) { deleting = true; delay = 1800; }
+        else if (deleting && chars === 0) { deleting = false; role = (role + 1) % roles.length; delay = 300; }
+        typingTimer = setTimeout(tick, delay);
+      };
+      tick();
+    }
+    restartTyping();
+
+    // Dock: enlarge neighbours of the hovered item
+    const dockItems = [...document.querySelectorAll(".dock-item")];
+    dockItems.forEach((item, i) => {
+      item.addEventListener("mouseenter", () => dockItems.forEach((d, j) => d.classList.toggle("near", Math.abs(i - j) === 1)));
+    });
+    document.querySelector(".dock").addEventListener("mouseleave", () => dockItems.forEach(d => d.classList.remove("near")));
+
+    // Hero dot grid that reacts to the cursor
+    (() => {
+      const canvas = document.getElementById("dots");
+      const ctx = canvas.getContext("2d");
+      const hero = canvas.parentElement;
+      const GAP = 26, RADIUS = 150;
+      let w, h, dpr, mouse = { x: -999, y: -999 }, target = { x: -999, y: -999 }, raf = 0, visible = true;
+
+      const resize = () => {
+        dpr = Math.min(devicePixelRatio || 1, 2);
+        w = hero.clientWidth; h = hero.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        draw();
+      };
+      const draw = () => {
+        const cs = getComputedStyle(root);
+        const dot = cs.getPropertyValue("--dot").trim();
+        const glow = cs.getPropertyValue("--glow").trim();
+        ctx.clearRect(0, 0, w, h);
+        for (let y = GAP / 2; y < h; y += GAP) {
+          for (let x = GAP / 2; x < w; x += GAP) {
+            const dx = x - mouse.x, dy = y - mouse.y;
+            const t = Math.max(0, 1 - Math.hypot(dx, dy) / RADIUS);
+            ctx.beginPath();
+            ctx.arc(x - dx * t * 0.12, y - dy * t * 0.12, 1 + t * 1.6, 0, Math.PI * 2);
+            ctx.fillStyle = t > 0 ? `rgba(${glow}, ${0.25 + t * 0.75})` : `rgba(${dot}, .13)`;
+            ctx.fill();
+          }
+        }
+      };
+      const loop = () => {
+        mouse.x += (target.x - mouse.x) * 0.18;
+        mouse.y += (target.y - mouse.y) * 0.18;
+        draw();
+        raf = Math.abs(target.x - mouse.x) + Math.abs(target.y - mouse.y) > 0.5 ? requestAnimationFrame(loop) : 0;
+      };
+      const kick = () => { if (!raf && visible) raf = requestAnimationFrame(loop); };
+
+      if (!reduceMotion) {
+        hero.addEventListener("pointermove", e => {
+          const r = canvas.getBoundingClientRect();
+          if (mouse.x < -900) mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+          target = { x: e.clientX - r.left, y: e.clientY - r.top };
+          kick();
+        });
+        hero.addEventListener("pointerleave", () => { target = { x: -999, y: -999 }; mouse = { ...target }; draw(); });
+      }
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(hero);
+      new MutationObserver(draw).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+      matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+      addEventListener("resize", resize);
+      resize();
+    })();
+
+    // Reveal on scroll
+    const revealer = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); revealer.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => revealer.observe(el));
+
+    // Section side nav + header active link + progress line
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const sideNav = document.querySelector(".side-nav");
+    const progress = sideNav.querySelector(".progress");
+    const sideLinks = [...sideNav.querySelectorAll("a")];
+    const navLinks = [...document.querySelectorAll(".nav-links a[href^='#']")];
+    const onScroll = () => {
+      const mid = scrollY + innerHeight * 0.4;
+      let current = sections.findLast(s => s.offsetTop <= mid);
+      const id = current ? current.id : "";
+      sideNav.classList.toggle("visible", scrollY > innerHeight * 0.6);
+      [...sideLinks, ...navLinks].forEach(a => a.classList.toggle("active", !!id && a.getAttribute("href") === "#" + id));
+      const idx = sideLinks.findIndex(a => a.classList.contains("active"));
+      const track = sideLinks.at(-1).offsetTop - sideLinks[0].offsetTop;
+      progress.style.height = idx < 0 ? "0" : (sideLinks[idx].offsetTop - sideLinks[0].offsetTop) + "px";
+      if (track <= 0) progress.style.height = "0";
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  </script>
 </body>
 </html>
