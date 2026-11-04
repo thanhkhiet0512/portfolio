@@ -125,9 +125,14 @@
     @media (max-width: 960px) { .nav { display: none; } .tools { margin-left: auto; } .k-hint { display: none; } .menu-label { display: inline; } }
     @media (max-width: 400px) { .logo small { display: none; } }
 
-    /* ---------- hero ---------- */
-    .hero { padding: 64px 0 0; }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+    /* ---------- hero (yellow poster, same in day and night) ---------- */
+    .hero {
+      --ink: #1d1612; --ink-2: #3b2f22; --ink-3: #6e5a35; --red: #da251d; --red-ink: #b81d16;
+      --card: #fff8e1; --shadow: #1d1612; --on-red: #fff6dc;
+      position: relative; overflow: hidden; padding: 72px 0 0; background: var(--gold); color: var(--ink);
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1fr; min-height: 560px; align-content: center; }
+    .hero-copy { position: relative; z-index: 1; max-width: 680px; }
     .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0; font: 700 13px var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--red-ink); }
     .eyebrow .star { color: var(--red); }
     .hero h1 { margin: 34px 0 0; font: 400 clamp(56px, 9vw, 120px)/1.02 var(--display); text-transform: uppercase; letter-spacing: .005em; }
@@ -137,8 +142,7 @@
       font: 400 clamp(17px, 2.1vw, 25px)/1.2 var(--display); text-transform: uppercase; letter-spacing: .03em;
       box-shadow: 6px 6px 0 var(--shadow); transform: rotate(-1.2deg);
     }
-    :root[data-theme="dark"] .slogan { box-shadow: 6px 6px 0 #000; }
-    .lead { font-size: 18px; color: var(--ink-2); max-width: 33em; margin: 28px 0 0; }
+        .lead { font-size: 18px; color: var(--ink-2); max-width: 33em; margin: 28px 0 0; }
     .lead strong { color: var(--ink); }
     .whoami { margin: 16px 0 0; font: 14px var(--mono); color: var(--ink-2); }
     .whoami b { color: var(--red-ink); font-weight: 700; }
@@ -154,33 +158,37 @@
     .btn.red { background: var(--red); color: var(--on-red); }
     .btn svg { width: 17px; height: 17px; }
 
-    /* Đông Sơn drum */
-    .drum-wrap { position: relative; justify-self: center; width: 100%; max-width: 460px; }
-    .drum { width: 100%; height: auto; display: block; filter: drop-shadow(8px 8px 0 var(--shadow)); }
-    .d-face { fill: var(--red); stroke: #1d1612; stroke-width: 4; }
-    .d-line { fill: none; stroke: var(--gold); stroke-width: 1.6; }
-    .d-ticks line { stroke: var(--gold); stroke-width: 2; }
-    .d-zig { fill: none; stroke: var(--gold); stroke-width: 1.6; }
-    .d-dots circle { fill: var(--gold); }
-    .d-rays polygon { fill: var(--gold); }
-    .d-sun { fill: var(--red); stroke: var(--gold); stroke-width: 2; }
-    .d-star { fill: var(--gold); }
-    .d-text { font: 700 13.5px var(--mono); letter-spacing: .14em; fill: var(--gold); }
-    .d-spin { animation: spin 60s linear infinite; }
+    /* Đông Sơn drum, engraved into the yellow background */
+    .drum-wrap {
+      position: absolute; z-index: 0; pointer-events: none;
+      width: 860px; right: -290px; top: 50%; transform: translateY(-50%);
+    }
+    .drum { width: 100%; height: auto; display: block; }
+    .d-face { fill: rgba(218, 37, 29, .05); stroke: rgba(184, 29, 22, .55); stroke-width: 2.5; }
+    .d-line { fill: none; stroke: rgba(184, 29, 22, .45); stroke-width: 1.4; }
+    .d-ticks line { stroke: rgba(184, 29, 22, .4); stroke-width: 1.8; }
+    .d-zig { fill: none; stroke: rgba(184, 29, 22, .45); stroke-width: 1.4; }
+    .d-dots circle { fill: rgba(184, 29, 22, .5); }
+    .d-rays polygon { fill: rgba(218, 37, 29, .75); }
+    .d-sun { fill: #ffcd00; stroke: rgba(184, 29, 22, .6); stroke-width: 2; }
+    .d-star { fill: #da251d; }
+    .d-text { font: 700 13px var(--mono); letter-spacing: .16em; fill: rgba(184, 29, 22, .65); }
+    .d-spin { animation: spin 90s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .stamp {
-      position: absolute; right: -4px; bottom: 6px; width: 116px; height: 116px; border-radius: 50%;
-      border: 3px solid #1d1612; background: var(--gold); color: #1d1612;
+      position: absolute; z-index: 2; right: 8px; bottom: 28px; width: 116px; height: 116px; border-radius: 50%;
+      border: 3px solid #1d1612; background: #da251d; color: #ffcd00;
       display: grid; place-items: center; text-align: center; transform: rotate(12deg);
       font: 400 16px/1.05 var(--display); text-transform: uppercase; letter-spacing: .04em;
       box-shadow: 4px 4px 0 #1d1612;
     }
-    .stamp span { display: block; font: 700 9.5px var(--mono); letter-spacing: .08em; margin-top: 5px; }
+    .stamp span { display: block; font: 700 9.5px var(--mono); letter-spacing: .08em; margin-top: 5px; color: #fff6dc; }
+    @media (max-width: 1100px) { .drum-wrap { right: -400px; } }
     @media (max-width: 900px) {
-      .hero { padding-top: 40px; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .drum-wrap { max-width: 330px; }
-      .stamp { width: 96px; height: 96px; font-size: 13px; }
+      .hero { padding-top: 44px; }
+      .hero-grid { min-height: 0; padding-bottom: 120px; }
+      .drum-wrap { width: 620px; right: -300px; top: auto; bottom: -260px; transform: none; opacity: .8; }
+      .stamp { width: 92px; height: 92px; font-size: 13px; right: 0; bottom: 12px; }
     }
 
     /* marquee ribbon */
@@ -401,7 +409,7 @@
     <!-- ================= HERO ================= -->
     <section class="hero">
       <div class="wrap hero-grid">
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow"><svg class="star"><use href="#star"/></svg>
             <span class="en">Software engineer · Sài Gòn, Việt Nam</span><span class="vi">Kỹ sư phần mềm · Sài Gòn, Việt Nam</span></p>
           <h1>Nguyễn <span class="r">Thanh Khiết</span></h1>
@@ -422,7 +430,7 @@
         </div>
 
         <div class="drum-wrap">
-          <svg class="drum" viewBox="-200 -200 400 400" role="img" aria-label="Đông Sơn bronze drum pattern with a yellow star in the centre and a ring of tech names">
+          <svg class="drum" viewBox="-200 -200 400 400" role="img" aria-hidden="true">
             <defs><path id="ring" d="M0,-122 a122,122 0 1,1 0,244 a122,122 0 1,1 0,-244"/></defs>
             <circle r="196" class="d-face"/>
             <circle r="188" class="d-line"/><circle r="182" class="d-line"/>
@@ -438,8 +446,8 @@
             <circle r="46" class="d-sun"/>
             <polygon class="d-star" points="0.0,-38.0 8.8,-12.1 36.1,-11.7 14.3,4.6 22.3,30.7 0.0,15.0 -22.3,30.7 -14.3,4.6 -36.1,-11.7 -8.8,-12.1"/>
           </svg>
-          <div class="stamp"><div>Made in<br>Việt Nam<span id="clock">GMT+7</span></div></div>
         </div>
+          <div class="stamp"><div>Made in<br>Việt Nam<span id="clock">GMT+7</span></div></div>
       </div>
 
       <div class="ribbon" aria-hidden="true">
