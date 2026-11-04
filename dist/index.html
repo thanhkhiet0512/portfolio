@@ -39,11 +39,11 @@
     /* ---------- tokens: paper (light) is the default ---------- */
     :root {
       color-scheme: light;
-      --paper: #fbf0c6;
+      --paper: #fcf3d0;
       --paper-2: #f5e5a8;
       --card: #fffbec;
-      --drum: rgba(184, 29, 22, .15);
-      --drum-strong: rgba(218, 37, 29, .18);
+      --drum: rgba(184, 29, 22, .11);
+      --drum-strong: rgba(218, 37, 29, .13);
       --ink: #1d1612;
       --ink-2: #4a3f37;
       --ink-3: #85786c;
@@ -156,10 +156,10 @@
     .btn.red { background: var(--red); color: var(--on-red); }
     .btn svg { width: 17px; height: 17px; }
 
-    /* Đông Sơn drum: fixed, page-wide background behind all content */
+    /* Đông Sơn drum: a faint watermark fixed in the centre of the page, like a seal on official paper */
     body > .bg-drum {
       position: fixed; z-index: 0; pointer-events: none;
-      width: 145vmax; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: min(820px, 88vw, 82vh); left: 50%; top: calc(50% + 30px); transform: translate(-50%, -50%);
     }
     .drum { width: 100%; height: auto; display: block; }
     .d-face { fill: none; stroke: var(--drum-strong); stroke-width: 2.5; }
@@ -171,8 +171,6 @@
     .d-sun { fill: none; stroke: var(--drum-strong); stroke-width: 2; }
     .d-star { fill: var(--drum-strong); }
     .d-text { font: 700 13px var(--mono); letter-spacing: .16em; fill: var(--drum-strong); }
-    .d-spin { animation: spin 120s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
     .stamp {
       position: absolute; z-index: 2; right: 8px; bottom: 28px; width: 116px; height: 116px; border-radius: 50%;
       border: 3px solid #1d1612; background: #da251d; color: #ffcd00;
@@ -368,7 +366,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .js .reveal { opacity: 1; transform: none; transition: none; }
-      .d-spin, .ribbon-track { animation: none; }
+      .ribbon-track { animation: none; }
     }
   </style>
 </head>
