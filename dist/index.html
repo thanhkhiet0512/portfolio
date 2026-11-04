@@ -159,7 +159,7 @@
     /* Đông Sơn drum: fixed, page-wide background behind all content */
     body > .bg-drum {
       position: fixed; z-index: 0; pointer-events: none;
-      width: min(1250px, 150vw); left: 68%; top: 54%; transform: translate(-50%, -50%);
+      width: 145vmax; left: 50%; top: 50%; transform: translate(-50%, -50%);
     }
     .drum { width: 100%; height: auto; display: block; }
     .d-face { fill: none; stroke: var(--drum-strong); stroke-width: 2.5; }
@@ -184,7 +184,6 @@
     @media (max-width: 900px) {
       .hero { padding-top: 44px; }
       .hero-grid { min-height: 0; padding-bottom: 120px; }
-      body > .bg-drum { left: 50%; top: 50%; width: 180vw; }
       .stamp { width: 92px; height: 92px; font-size: 13px; right: 14px; bottom: 16px; }
     }
 
