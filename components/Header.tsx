@@ -6,36 +6,18 @@ import { useEffect, useState } from "react";
 import { toggleLang, toggleTheme } from "@/lib/client";
 import { MoonIcon, SunIcon } from "./icons";
 
-export const SECTIONS = ["about", "experience", "projects", "stack", "now", "contact"] as const;
+/** Top navigation — each item is its own page. */
+export const NAV = ["about", "experience", "projects", "stack", "contact"] as const;
 
 export function Header() {
   const pathname = usePathname();
-  const onHome = pathname === "/";
-  const [active, setActive] = useState<string>(onHome ? "" : "projects");
   const [mod, setMod] = useState("⌘");
 
   useEffect(() => {
     if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) setMod("Ctrl");
   }, []);
 
-  // Scroll spy on the home page; on case-study pages "projects" stays active.
-  useEffect(() => {
-    if (!onHome) {
-      setActive("projects");
-      return;
-    }
-    const els = SECTIONS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    const onScroll = () => {
-      const mid = window.scrollY + window.innerHeight * 0.35;
-      let current = "";
-      for (const el of els) if (el.offsetTop <= mid) current = el.id;
-      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = "contact";
-      setActive(current);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [onHome]);
+  const isActive = (id: string) => pathname === `/${id}` || pathname.startsWith(`/${id}/`);
 
   const btn =
     "inline-flex h-8 min-w-8 items-center justify-center gap-1.5 rounded-md border border-line bg-surface px-2 font-mono text-xs font-medium text-fg-2 transition hover:border-line-2 hover:text-fg";
@@ -48,18 +30,19 @@ export function Header() {
           <span className="blink ml-0.5 inline-block h-[15px] w-2 bg-accent align-[-2px]" aria-hidden="true" />
         </Link>
 
-        <nav className="ml-auto hidden gap-1 md:flex" aria-label="Sections">
-          {SECTIONS.map((id) => (
-            <a
+        <nav className="ml-auto hidden gap-1 md:flex" aria-label="Pages">
+          {NAV.map((id) => (
+            <Link
               key={id}
-              href={`/#${id}`}
+              href={`/${id}/`}
+              aria-current={isActive(id) ? "page" : undefined}
               className={`rounded-md px-2.5 py-1.5 font-mono text-[13px] font-medium transition hover:bg-surface-2 hover:text-fg ${
-                active === id ? "text-accent" : "text-fg-3"
+                isActive(id) ? "text-accent" : "text-fg-3"
               }`}
             >
-              {active === id && <span className="opacity-60">./</span>}
+              {isActive(id) && <span className="opacity-60">./</span>}
               {id}
-            </a>
+            </Link>
           ))}
         </nav>
 
