@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: Params) {
               ~
             </Link>
             <span>/</span>
-            <Link href="/#projects" className="hover:text-fg">
+            <Link href="/projects/" className="hover:text-fg">
               projects
             </Link>
             <span>/</span>
@@ -175,7 +175,7 @@ export default async function ProjectPage({ params }: Params) {
               </div>
             </Link>
           ) : (
-            <Link href="/#projects" className="card group p-5 hover:border-accent/50">
+            <Link href="/projects/" className="card group p-5 hover:border-accent/50">
               <span className="inline-flex items-center gap-1.5 font-mono text-xs text-fg-3">
                 <ArrowLeft className="size-3.5" />
                 cd ..
@@ -196,7 +196,7 @@ export default async function ProjectPage({ params }: Params) {
               </div>
             </Link>
           ) : (
-            <Link href="/#contact" className="card group p-5 text-right hover:border-accent/50">
+            <Link href="/contact/" className="card group p-5 text-right hover:border-accent/50">
               <span className="inline-flex items-center gap-1.5 font-mono text-xs text-fg-3">
                 <T v={{ en: "say hi", vi: "liên hệ" }} />
                 <ArrowRight className="size-3.5" />

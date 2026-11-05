@@ -25,18 +25,18 @@ export function CommandPalette() {
 
   const commands = useMemo<Command[]>(
     () => [
-      { en: "Go to About", vi: "Đến Giới thiệu", hint: "#about", run: go("/#about") },
-      { en: "Go to Experience", vi: "Đến Kinh nghiệm", hint: "#experience", run: go("/#experience") },
-      { en: "Go to Projects", vi: "Đến Dự án", hint: "#projects", run: go("/#projects") },
+      { en: "Home", vi: "Trang chủ", hint: "/", run: go("/") },
+      { en: "About", vi: "Giới thiệu", hint: "/about", run: go("/about/") },
+      { en: "Experience", vi: "Kinh nghiệm", hint: "/experience", run: go("/experience/") },
+      { en: "Projects", vi: "Dự án", hint: "/projects", run: go("/projects/") },
       ...projects.map((p) => ({
         en: `Open case study: ${p.name.en}`,
         vi: `Mở dự án: ${p.name.vi}`,
         hint: `/projects/${p.slug}`,
         run: go(`/projects/${p.slug}/`),
       })),
-      { en: "Go to Stack", vi: "Đến Công nghệ", hint: "#stack", run: go("/#stack") },
-      { en: "Go to Now", vi: "Đến Hiện tại", hint: "#now", run: go("/#now") },
-      { en: "Go to Contact", vi: "Đến Liên hệ", hint: "#contact", run: go("/#contact") },
+      { en: "Stack", vi: "Công nghệ", hint: "/stack", run: go("/stack/") },
+      { en: "Contact", vi: "Liên hệ", hint: "/contact", run: go("/contact/") },
       { en: "Copy email", vi: "Sao chép email", hint: "copy", run: copyEmail },
       { en: "Send email", vi: "Gửi email", hint: "mailto", run: () => (window.location.href = `mailto:${profile.email}`) },
       { en: "Open GitHub", vi: "Mở GitHub", hint: "↗", run: () => window.open(profile.github, "_blank", "noopener") },
